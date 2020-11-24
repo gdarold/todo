@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   var items = new List<Item>();
   HomePage() {
@@ -67,6 +68,9 @@ class _HomePageState extends State<HomePage> {
     if (data != null) {
       Iterable decoded = jsonDecode(data);
       List<Item> result = decoded.map((x) => Item.fromJson(x)).toList();
+      setState(() {
+        widget.items = result;
+      });
     }
   }
 
